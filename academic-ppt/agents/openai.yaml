@@ -1,0 +1,4 @@
+interface:
+  display_name: "高信息密度学术答辩PPT"
+  short_description: "沿用校内模板，组织图表公式与技术论证，核查研究状态和证据来源"
+  default_prompt: "使用 $academic-ppt，依据最新报告和指定模板制作高信息密度的学术答辩PPT，展开方法机制与验证设计。"
