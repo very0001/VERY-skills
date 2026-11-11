@@ -1,0 +1,4 @@
+interface:
+  display_name: "word-academic-reprot"
+  short_description: "中文学术 Word 报告的首次成稿、定向修订与图文引文质检"
+  default_prompt: "请使用 $word-academic-reprot，根据当前任务与资料，从零撰写或定向修订学术 Word 报告，并先完成证据、图文、引文和版式检查。"
