@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Portable X11 wrapper. Does not install dependencies or change system settings.
+set -euo pipefail
+export COMPUTER_USE_LINUX_SCREENSHOT_BACKEND=x11
+root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+prefix="${VERY_CU_PYTHON_PREFIX:-${CONDA_PREFIX:-${VIRTUAL_ENV:-}}}"
+if [[ -n "$prefix" && -d "$prefix/bin" ]]; then export PATH="$prefix/bin:$PATH"; fi
+if [[ -n "${VERY_CU_UPSTREAM_BIN:-}" ]]; then
+  exec "$VERY_CU_UPSTREAM_BIN" "$@"
+fi
+for candidate in "$root/upstream-runtime/node_modules/.bin/computer-use-linux" "${prefix:-/nonexistent}/opt/upstream-runtime/node_modules/.bin/computer-use-linux"; do
+  if [[ -x "$candidate" ]]; then exec "$candidate" "$@"; fi
+done
+if command -v computer-use-linux >/dev/null 2>&1; then exec computer-use-linux "$@"; fi
+printf '%s\n' 'computer-use-linux not found. Install the pinned backend in PROJECT/upstream-runtime or set VERY_CU_UPSTREAM_BIN to its executable.' >&2
+exit 127

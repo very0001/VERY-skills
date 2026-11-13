@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "VERY-computer-use"
+version = "0.1.0"
+description = "Local Ubuntu desktop MCP with bounded observation and fast shared-input tasks"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["Pillow>=10", "numpy>=1.24"]
+[project.optional-dependencies]
+dev = ["pytest>=9,<10"]
+video = ["opencv-python-headless>=4.8"]
+portal = ["dbus-next>=0.2.3,<1"]
+[project.scripts]
+very-cu = "semantic_cu.cli:main"
+semantic-cu = "semantic_cu.cli:main"
+[tool.setuptools]
+license-files = ["LICENSES/*.txt"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
